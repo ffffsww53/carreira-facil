@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carreira Fácil – Encontre o emprego dos seus sonhos</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue-50: #E6F1FB;
+    --blue-100: #B5D4F4;
+    --blue-500: #2178C4;
+    --blue-600: #185FA5;
+    --blue-700: #0F4880;
+    --blue-800: #0C447C;
+    --blue-900: #042C53;
+    --gray-50: #F7F9FC;
+    --gray-100: #EEF1F6;
+    --gray-200: #DDE3EC;
+    --gray-400: #8A95A3;
+    --gray-600: #4B5563;
+    --gray-800: #1E2A3A;
+    --white: #FFFFFF;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.07);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.13);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--gray-800); background: var(--white); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-sm);
+  }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1.3rem; font-weight: 700; color: var(--blue-600);
+  }
+  .logo i { font-size: 1.5rem; }
+  nav { display: flex; gap: 1.75rem; }
+  nav a {
+    font-size: 0.95rem; color: var(--gray-600);
+    transition: color .2s;
+  }
+  nav a:hover { color: var(--blue-600); }
+  .btn { cursor: pointer; border: none; font-family: inherit; }
+  .btn-primary {
+    background: var(--blue-600); color: var(--white);
+    padding: .55rem 1.25rem; border-radius: 50px;
+    font-size: .9rem; font-weight: 600;
+    transition: background .2s, transform .1s;
+  }
+  .btn-primary:hover { background: var(--blue-700); }
+  .btn-primary:active { transform: scale(.97); }
+  .btn-outline {
+    background: transparent; color: var(--blue-600);
+    border: 1.5px solid var(--blue-600);
+    padding: .5rem 1.2rem; border-radius: 50px;
+    font-size: .9rem; font-weight: 600;
+    transition: background .2s, color .2s;
+  }
+  .btn-outline:hover { background: var(--blue-50); }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; font-size: 1.4rem; color: var(--gray-600); }
+  .mobile-nav {
+    display: none; flex-direction: column; gap: .5rem;
+    background: var(--white); padding: 1rem 1.5rem;
+    border-top: 1px solid var(--gray-200);
+  }
+  .mobile-nav a { padding: .5rem 0; border-bottom: 1px solid var(--gray-100); color: var(--gray-600); }
+  .mobile-nav.open { display: flex; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--blue-800) 0%, var(--blue-500) 100%);
+    color: var(--white); padding: 5rem 1.5rem 4rem;
+    text-align: center;
+  }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: .75rem; }
+  .hero p { font-size: 1.1rem; opacity: .88; margin-bottom: 2rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .search-box {
+    background: var(--white); border-radius: var(--radius-xl);
+    padding: .5rem; max-width: 720px; margin: 0 auto;
+    display: flex; gap: .5rem; flex-wrap: wrap;
+    box-shadow: var(--shadow-lg);
+  }
+  .search-box input, .search-box select {
+    border: none; outline: none;
+    font-family: inherit; font-size: .95rem;
+    color: var(--gray-800); background: transparent;
+    padding: .55rem .9rem;
+    border-radius: 50px;
+  }
+  .search-box input { flex: 1 1 220px; }
+  .search-box select { flex: 0 1 160px; color: var(--gray-600); }
+  .search-box .btn-primary { flex-shrink: 0; padding: .65rem 1.6rem; }
+  .hero-tags { margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
+  .hero-tag {
+    background: rgba(255,255,255,.18); color: var(--white);
+    font-size: .82rem; padding: .3rem .9rem;
+    border-radius: 50px; border: 1px solid rgba(255,255,255,.35);
+    cursor: pointer; transition: background .2s;
+  }
+  .hero-tag:hover { background: rgba(255,255,255,.28); }
+
+  /* ── SECTIONS ── */
+  section { padding: 4rem 1.5rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 2.5rem; }
+  .section-header h2 { font-size: 1.8rem; font-weight: 700; color: var(--gray-800); }
+  .section-header p { color: var(--gray-400); margin-top: .4rem; }
+  .badge {
+    display: inline-block; font-size: .78rem; font-weight: 600;
+    background: var(--blue-50); color: var(--blue-600);
+    padding: .25rem .75rem; border-radius: 50px; margin-bottom: .75rem;
+    letter-spacing: .03em;
+  }
+
+  /* ── VAGAS ── */
+  #vagas { background: var(--gray-50); }
+  .vagas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+  .vaga-card {
+    background: var(--white); border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    padding: 1.4rem;
+    display: flex; flex-direction: column; gap: .75rem;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .vaga-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .vaga-card-header { display: flex; align-items: flex-start; gap: .9rem; }
+  .company-logo {
+    width: 48px; height: 48px; border-radius: var(--radius-sm);
+    background: var(--blue-50); color: var(--blue-600);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .vaga-card h3 { font-size: 1rem; font-weight: 600; color: var(--gray-800); margin-bottom: .15rem; }
+  .vaga-card .company { font-size: .88rem; color: var(--gray-400); }
+  .vaga-meta { display: flex; flex-wrap: wrap; gap: .5rem; font-size: .82rem; }
+  .tag {
+    display: flex; align-items: center; gap: .3rem;
+    background: var(--gray-100); color: var(--gray-600);
+    padding: .2rem .65rem; border-radius: 50px;
+  }
+  .tag.remoto { background: #E8F5E9; color: #2E7D32; }
+  .tag.hibrido { background: #FFF3E0; color: #E65100; }
+  .tag.presencial { background: var(--blue-50); color: var(--blue-700); }
+  .tag.clt { background: #F3E5F5; color: #6A1B9A; }
+  .tag.pj { background: #E0F7FA; color: #00695C; }
+  .vaga-card .btn-primary { align-self: flex-start; font-size: .88rem; padding: .5rem 1.2rem; }
+
+  /* ── DICAS ── */
+  .dicas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+  .dica-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg); padding: 1.5rem 1.25rem;
+    text-align: center; transition: box-shadow .2s;
+  }
+  .dica-card:hover { box-shadow: var(--shadow-md); }
+  .dica-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.4rem;
+  }
+  .dica-icon.blue { background: var(--blue-50); color: var(--blue-600); }
+  .dica-icon.green { background: #E8F5E9; color: #2E7D32; }
+  .dica-icon.orange { background: #FFF3E0; color: #E65100; }
+  .dica-icon.purple { background: #F3E5F5; color: #6A1B9A; }
+  .dica-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: .4rem; }
+  .dica-card p { font-size: .88rem; color: var(--gray-400); }
+
+  /* ── FERRAMENTAS ── */
+  #ferramentas { background: var(--blue-800); color: var(--white); }
+  #ferramentas .section-header h2 { color: var(--white); }
+  #ferramentas .section-header p { color: rgba(255,255,255,.7); }
+  .ferramentas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .ferramenta-card {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: var(--radius-lg); padding: 1.5rem;
+    display: flex; flex-direction: column; gap: .75rem;
+    transition: background .2s;
+  }
+  .ferramenta-card:hover { background: rgba(255,255,255,.15); }
+  .ferramenta-card i { font-size: 1.8rem; color: #85B7EB; }
+  .ferramenta-card h3 { font-size: 1rem; font-weight: 600; }
+  .ferramenta-card p { font-size: .88rem; color: rgba(255,255,255,.7); }
+  .btn-light {
+    background: var(--white); color: var(--blue-700);
+    padding: .55rem 1.2rem; border-radius: 50px;
+    font-size: .88rem; font-weight: 600;
+    border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: .4rem;
+    transition: background .2s;
+    align-self: flex-start;
+  }
+  .btn-light:hover { background: var(--blue-50); }
+
+  /* ── DEPOIMENTOS ── */
+  #depoimentos { background: var(--gray-50); }
+  .depo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+  .depo-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg); padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 1rem;
+    transition: box-shadow .2s;
+  }
+  .depo-card:hover { box-shadow: var(--shadow-md); }
+  .depo-quote { font-size: .95rem; color: var(--gray-600); font-style: italic; line-height: 1.7; }
+  .depo-quote::before { content: '"'; font-size: 2rem; color: var(--blue-100); line-height: 0; vertical-align: -0.5rem; margin-right: .2rem; }
+  .depo-author { display: flex; align-items: center; gap: .75rem; }
+  .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--blue-500); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .95rem; flex-shrink: 0;
+  }
+  .avatar.g { background: #2E7D32; }
+  .avatar.o { background: #E65100; }
+  .depo-author strong { font-size: .92rem; display: block; }
+  .depo-author span { font-size: .82rem; color: var(--gray-400); }
+  .stars { color: #F59E0B; font-size: .85rem; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--gray-800); color: rgba(255,255,255,.8); padding: 3rem 1.5rem 1.5rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem; margin-bottom: 2.5rem;
+  }
+  .footer-brand .logo { color: var(--white); margin-bottom: .75rem; }
+  .footer-brand p { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.7; }
+  .footer-social { display: flex; gap: .75rem; margin-top: 1rem; }
+  .footer-social a {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,.1); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; transition: background .2s;
+  }
+  .footer-social a:hover { background: var(--blue-500); }
+  .footer-col h4 { font-size: .9rem; font-weight: 600; color: var(--white); margin-bottom: .9rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+  .footer-col ul li a { font-size: .88rem; color: rgba(255,255,255,.6); transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--white); }
+  .newsletter { display: flex; gap: .5rem; margin-top: .75rem; }
+  .newsletter input {
+    flex: 1; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    border-radius: 50px; padding: .55rem 1rem;
+    font-family: inherit; font-size: .88rem; color: var(--white);
+    outline: none;
+  }
+  .newsletter input::placeholder { color: rgba(255,255,255,.45); }
+  .newsletter .btn-primary { padding: .55rem 1rem; font-size: .85rem; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 1.25rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: .5rem;
+    font-size: .82rem; color: rgba(255,255,255,.45);
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.5); z-index: 1000;
+    align-items: center; justify-content: center; padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white); border-radius: var(--radius-xl);
+    max-width: 480px; width: 100%; padding: 2rem;
+    position: relative; animation: pop .25s ease;
+  }
+  @keyframes pop {
+    from { transform: scale(.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--gray-100); border: none; border-radius: 50%;
+    width: 32px; height: 32px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; color: var(--gray-600);
+  }
+  .modal-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--blue-50); color: var(--blue-600);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; margin: 0 auto 1.25rem;
+  }
+  .modal h2 { text-align: center; font-size: 1.3rem; margin-bottom: .4rem; }
+  .modal p { text-align: center; color: var(--gray-400); font-size: .93rem; margin-bottom: 1.5rem; }
+  .modal-form { display: flex; flex-direction: column; gap: .75rem; }
+  .modal-form label { font-size: .88rem; font-weight: 600; color: var(--gray-600); }
+  .modal-form input, .modal-form textarea {
+    width: 100%; border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-sm); padding: .65rem .9rem;
+    font-family: inherit; font-size: .93rem;
+    outline: none; transition: border-color .2s;
+  }
+  .modal-form input:focus, .modal-form textarea:focus { border-color: var(--blue-500); }
+  .modal-form textarea { height: 90px; resize: none; }
+  .modal-success { display: none; text-align: center; }
+  .modal-success i { font-size: 3.5rem; color: #2E7D32; margin-bottom: .75rem; display: block; }
+  .modal-success h3 { font-size: 1.2rem; margin-bottom: .3rem; }
+  .modal-success p { font-size: .9rem; color: var(--gray-400); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    nav, .header-inner .btn-primary { display: none; }
+    .hamburger { display: block; }
+    .hero { padding: 3.5rem 1.25rem 3rem; }
+    .search-box { padding: .4rem; gap: .4rem; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <div class="logo"><i class="fa-solid fa-briefcase"></i> Carreira Fácil</div>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#vagas">Vagas</a>
+      <a href="#dicas">Dicas</a>
+      <a href="#ferramentas">Currículo</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="btn btn-primary">Entrar / Cadastrar</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="#inicio">Início</a>
+    <a href="#vagas">Vagas</a>
+    <a href="#dicas">Dicas</a>
+    <a href="#ferramentas">Currículo</a>
+    <a href="#contato">Contato</a>
+    <button class="btn btn-primary" style="align-self:flex-start;margin-top:.25rem">Entrar / Cadastrar</button>
+  </nav>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero" id="inicio">
+  <div class="badge"><i class="fa-solid fa-bolt"></i> +12.000 vagas ativas</div>
+  <h1>Encontre o emprego<br>dos seus sonhos</h1>
+  <p>Busque entre milhares de oportunidades. Filtre por cargo, localidade e modalidade — e candidate-se em segundos.</p>
+  <div class="search-box">
+    <input type="text" id="search-input" placeholder="Cargo, empresa ou palavra-chave..." />
+    <select id="filter-city">
+      <option value="">🏙 Qualquer cidade</option>
+      <option>São Paulo, SP</option>
+      <option>Rio de Janeiro, RJ</option>
+      <option>Natal, RN</option>
+      <option>Belo Horizonte, MG</option>
+      <option>Curitiba, PR</option>
+      <option>Recife, PE</option>
+      <option>Porto Alegre, RS</option>
+      <option>Remoto</option>
+    </select>
+    <select id="filter-mode">
+      <option value="">💼 Modalidade</option>
+      <option>Remoto</option>
+      <option>Híbrido</option>
+      <option>Presencial</option>
+    </select>
+    <button class="btn btn-primary" onclick="buscarVagas()"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+  </div>
+  <div class="hero-tags">
+    <span class="hero-tag" onclick="fillSearch('Desenvolvedor')">Desenvolvedor</span>
+    <span class="hero-tag" onclick="fillSearch('Designer')">Designer</span>
+    <span class="hero-tag" onclick="fillSearch('Marketing')">Marketing</span>
+    <span class="hero-tag" onclick="fillSearch('Vendas')">Vendas</span>
+    <span class="hero-tag" onclick="fillSearch('Financeiro')">Financeiro</span>
+    <span class="hero-tag" onclick="fillSearch('RH')">RH</span>
+    <span class="hero-tag" onclick="fillSearch('Logística')">Logística</span>
+  </div>
+</section>
+
+<!-- ── VAGAS ── -->
+<section id="vagas">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="badge">Destacadas</span>
+      <h2>Vagas em destaque</h2>
+      <p>Oportunidades selecionadas para você hoje</p>
+    </div>
+    <div class="vagas-grid" id="vagas-grid"></div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn btn-outline" onclick="alert('Carregando mais vagas...')"><i class="fa-solid fa-arrow-down"></i> Ver mais vagas</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── DICAS ── -->
+<section id="dicas">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="badge">Orientação</span>
+      <h2>Dicas para arrasar na busca</h2>
+      <p>Pequenos ajustes que fazem grande diferença</p>
+    </div>
+    <div class="dicas-grid">
+      <div class="dica-card">
+        <div class="dica-icon blue"><i class="fa-solid fa-file-lines"></i></div>
+        <h3>Currículo impactante</h3>
+        <p>Use linguagem de ação, números concretos e adapte para cada vaga. Máximo 2 páginas.</p>
+      </div>
+      <div class="dica-card">
+        <div class="dica-icon blue"><i class="fa-brands fa-linkedin"></i></div>
+        <h3>LinkedIn atualizado</h3>
+        <p>Perfil completo tem até 40× mais chances de ser visto por recrutadores. Adicione foto e resumo.</p>
+      </div>
+      <div class="dica-card">
+        <div class="dica-icon green"><i class="fa-solid fa-handshake"></i></div>
+        <h3>Networking ativo</h3>
+        <p>70% das vagas são preenchidas por indicação. Conecte-se com profissionais da área desejada.</p>
+      </div>
+      <div class="dica-card">
+        <div class="dica-icon orange"><i class="fa-solid fa-comments"></i></div>
+        <h3>Entrevista confiante</h3>
+        <p>Pesquise a empresa, prepare histórias com o método STAR e pratique em voz alta antes.</p>
+      </div>
+      <div class="dica-card">
+        <div class="dica-icon purple"><i class="fa-solid fa-envelope-open-text"></i></div>
+        <h3>Carta de apresentação</h3>
+        <p>Personalize para cada empresa. Mostre por que você é a solução para o problema deles.</p>
+      </div>
+      <div class="dica-card">
+        <div class="dica-icon blue"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Desenvolva habilidades</h3>
+        <p>Cursos gratuitos no Coursera, Alura e YouTube podem transformar seu perfil rapidamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FERRAMENTAS ── -->
+<section id="ferramentas">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="badge" style="background:rgba(255,255,255,.15);color:#B5D4F4">Ferramentas</span>
+      <h2>Tudo para te preparar</h2>
+      <p>Recursos gratuitos para você se destacar</p>
+    </div>
+    <div class="ferramentas-grid">
+      <div class="ferramenta-card">
+        <i class="fa-solid fa-file-word"></i>
+        <h3>Gerador de Currículo</h3>
+        <p>Crie um currículo profissional em minutos. Escolha entre vários modelos e baixe em PDF.</p>
+        <button class="btn-light"><i class="fa-solid fa-wand-magic-sparkles"></i> Criar currículo grátis</button>
+      </div>
+      <div class="ferramenta-card">
+        <i class="fa-solid fa-envelope"></i>
+        <h3>Modelo de Carta</h3>
+        <p>Templates prontos de carta de apresentação para diferentes áreas e níveis de senioridade.</p>
+        <button class="btn-light"><i class="fa-solid fa-download"></i> Baixar modelo</button>
+      </div>
+      <div class="ferramenta-card">
+        <i class="fa-solid fa-list-check"></i>
+        <h3>Checklist de Entrevista</h3>
+        <p>Lista completa do que fazer antes, durante e depois da entrevista para garantir uma boa impressão.</p>
+        <button class="btn-light"><i class="fa-solid fa-check"></i> Ver checklist</button>
+      </div>
+      <div class="ferramenta-card">
+        <i class="fa-solid fa-robot"></i>
+        <h3>Simulador de Entrevista</h3>
+        <p>Pratique com perguntas reais de entrevistas e receba feedback sobre suas respostas.</p>
+        <button class="btn-light"><i class="fa-solid fa-play"></i> Simular entrevista</button>
+      </div>
+      <div class="ferramenta-card">
+        <i class="fa-solid fa-magnifying-glass-chart"></i>
+        <h3>Análise de Currículo</h3>
+        <p>Envie seu currículo e receba sugestões personalizadas para melhorar suas chances de aprovação.</p>
+        <button class="btn-light"><i class="fa-solid fa-upload"></i> Analisar currículo</button>
+      </div>
+      <div class="ferramenta-card">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <h3>Cursos Gratuitos</h3>
+        <p>Seleção curada de cursos online gratuitos nas áreas mais demandadas do mercado de trabalho.</p>
+        <button class="btn-light"><i class="fa-solid fa-arrow-right"></i> Explorar cursos</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DEPOIMENTOS ── -->
+<section id="depoimentos">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="badge">Histórias reais</span>
+      <h2>Quem encontrou emprego aqui</h2>
+      <p>Mais de 8.000 pessoas contratadas nos últimos 12 meses</p>
+    </div>
+    <div class="depo-grid">
+      <div class="depo-card">
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p class="depo-quote">Em apenas 3 semanas usando o Carreira Fácil consegui 4 entrevistas e fui contratada como analista de marketing. As dicas de currículo fizeram toda a diferença!</p>
+        <div class="depo-author">
+          <div class="avatar">AM</div>
+          <div><strong>Ana Martins</strong><span>Analista de Marketing · São Paulo</span></div>
+        </div>
+      </div>
+      <div class="depo-card">
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p class="depo-quote">Estava há 8 meses desempregado. Usei o gerador de currículo e o simulador de entrevista — na segunda semana já tinha uma proposta de dev pleno com ótimo salário.</p>
+        <div class="depo-author">
+          <div class="avatar g">RS</div>
+          <div><strong>Rafael Santos</strong><span>Desenvolvedor Pleno · Remoto</span></div>
+        </div>
+      </div>
+      <div class="depo-card">
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+        <p class="depo-quote">Em transição de carreira do varejo para TI, achei que seria impossível. O Carreira Fácil me ajudou a estruturar meu perfil e encontrei uma vaga de suporte que pagou meus cursos.</p>
+        <div class="depo-author">
+          <div class="avatar o">JP</div>
+          <div><strong>Juliana Pereira</strong><span>Analista de Suporte · Belo Horizonte</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="contato">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><i class="fa-solid fa-briefcase"></i> Carreira Fácil</div>
+        <p>Conectamos talentos a oportunidades. Nossa missão é tornar a busca por emprego simples, rápida e acessível para todos.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Para Candidatos</h4>
+        <ul>
+          <li><a href="#">Buscar Vagas</a></li>
+          <li><a href="#">Criar Currículo</a></li>
+          <li><a href="#">Dicas de Carreira</a></li>
+          <li><a href="#">Cursos Gratuitos</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Para Empresas</h4>
+        <ul>
+          <li><a href="#">Publicar Vagas</a></li>
+          <li><a href="#">Banco de Talentos</a></li>
+          <li><a href="#">Planos e Preços</a></li>
+          <li><a href="#">Parceiros</a></li>
+          <li><a href="#">API</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Receba vagas no e-mail</h4>
+        <p style="font-size:.85rem;color:rgba(255,255,255,.55);margin-bottom:.5rem">Cadastre-se e receba as melhores oportunidades toda semana.</p>
+        <div class="newsletter">
+          <input type="email" placeholder="seu@email.com" id="newsletter-input" />
+          <button class="btn btn-primary" onclick="subscribeNewsletter()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Carreira Fácil · Todos os direitos reservados</span>
+      <span>
+        <a href="#" style="color:rgba(255,255,255,.45);margin-right:.75rem">Privacidade</a>
+        <a href="#" style="color:rgba(255,255,255,.45);margin-right:.75rem">Termos de Uso</a>
+        <a href="#" style="color:rgba(255,255,255,.45)">Cookies</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <div id="modal-form-wrap">
+      <div class="modal-icon"><i class="fa-solid fa-paper-plane"></i></div>
+      <h2 id="modal-title">Candidatar-se à vaga</h2>
+      <p id="modal-subtitle">Preencha os dados abaixo para enviar sua candidatura. Retornaremos em até 3 dias úteis.</p>
+      <div class="modal-form">
+        <div>
+          <label>Nome completo</label>
+          <input type="text" id="m-name" placeholder="Seu nome" />
+        </div>
+        <div>
+          <label>E-mail</label>
+          <input type="email" id="m-email" placeholder="seu@email.com" />
+        </div>
+        <div>
+          <label>Telefone</label>
+          <input type="tel" id="m-phone" placeholder="(11) 91234-5678" />
+        </div>
+        <div>
+          <label>Mensagem (opcional)</label>
+          <textarea id="m-msg" placeholder="Por que você é o candidato ideal?"></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%;padding:.7rem;font-size:1rem;border-radius:50px" onclick="submitApplication()">
+          <i class="fa-solid fa-check"></i> Enviar candidatura
+        </button>
+      </div>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <i class="fa-solid fa-circle-check"></i>
+      <h3>Candidatura enviada!</h3>
+      <p>Recebemos seu interesse. Boa sorte! 🎉</p>
+      <button class="btn btn-primary" style="margin-top:1rem;padding:.6rem 1.5rem;border-radius:50px" onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const vagasData = [
+  { title:'Desenvolvedor Front-end', company:'TechBrasil', city:'São Paulo, SP', mode:'remoto', contract:'CLT', icon:'fa-laptop-code', salary:'R$ 6.000–9.000' },
+  { title:'Analista de Marketing Digital', company:'AgênciaMax', city:'Rio de Janeiro, RJ', mode:'hibrido', contract:'CLT', icon:'fa-chart-bar', salary:'R$ 4.000–6.000' },
+  { title:'Designer UX/UI', company:'StartupFlow', city:'Remoto', mode:'remoto', contract:'PJ', icon:'fa-pen-ruler', salary:'R$ 7.000–11.000' },
+  { title:'Analista Financeiro', company:'FinGroup', city:'Belo Horizonte, MG', mode:'presencial', contract:'CLT', icon:'fa-chart-pie', salary:'R$ 5.000–7.500' },
+  { title:'Especialista em Vendas B2B', company:'VendaMax', city:'Curitiba, PR', mode:'hibrido', contract:'CLT', icon:'fa-handshake', salary:'R$ 4.500 + comissão' },
+  { title:'Engenheiro de Dados', company:'DataViz Co.', city:'Remoto', mode:'remoto', contract:'PJ', icon:'fa-database', salary:'R$ 10.000–16.000' },
+];
+
+const modeLabel = { remoto:'Remoto', hibrido:'Híbrido', presencial:'Presencial' };
+
+function renderVagas(vagas) {
+  const grid = document.getElementById('vagas-grid');
+  grid.innerHTML = '';
+  vagas.forEach(v => {
+    const card = document.createElement('div');
+    card.className = 'vaga-card';
+    card.innerHTML = `
+      <div class="vaga-card-header">
+        <div class="company-logo"><i class="fa-solid ${v.icon}"></i></div>
+        <div>
+          <h3>${v.title}</h3>
+          <span class="company"><i class="fa-regular fa-building" style="font-size:.8rem"></i> ${v.company}</span>
+        </div>
+      </div>
+      <div class="vaga-meta">
+        <span class="tag"><i class="fa-solid fa-location-dot" style="font-size:.75rem"></i> ${v.city}</span>
+        <span class="tag ${v.mode}"><i class="fa-solid fa-${v.mode==='remoto'?'wifi':v.mode==='hibrido'?'arrows-left-right':'building'}" style="font-size:.75rem"></i> ${modeLabel[v.mode]}</span>
+        <span class="tag ${v.contract.toLowerCase()}"><i class="fa-solid fa-file-contract" style="font-size:.75rem"></i> ${v.contract}</span>
+      </div>
+      <div style="font-size:.88rem;color:var(--gray-400)"><i class="fa-solid fa-money-bill-wave" style="margin-right:.3rem"></i>${v.salary}</div>
+      <button class="btn btn-primary" onclick="openModal('${v.title} – ${v.company}')">
+        <i class="fa-solid fa-paper-plane"></i> Candidatar-se
+      </button>`;
+    grid.appendChild(card);
+  });
+  if(vagas.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray-400)"><i class="fa-solid fa-magnifying-glass" style="font-size:2rem;margin-bottom:.5rem"></i><br>Nenhuma vaga encontrada. Tente outros filtros.</div>';
+  }
+}
+
+function buscarVagas() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const city = document.getElementById('filter-city').value.toLowerCase();
+  const mode = document.getElementById('filter-mode').value.toLowerCase();
+  const result = vagasData.filter(v => {
+    const matchQ = !q || v.title.toLowerCase().includes(q) || v.company.toLowerCase().includes(q);
+    const matchCity = !city || v.city.toLowerCase().includes(city.replace(', ','').split(' ')[0]);
+    const matchMode = !mode || v.mode === mode;
+    return matchQ && matchCity && matchMode;
+  });
+  renderVagas(result);
+  document.getElementById('vagas').scrollIntoView({behavior:'smooth'});
+}
+
+function fillSearch(term) {
+  document.getElementById('search-input').value = term;
+  buscarVagas();
+}
+
+let currentJob = '';
+function openModal(jobTitle) {
+  currentJob = jobTitle;
+  document.getElementById('modal-title').textContent = 'Candidatar-se à vaga';
+  document.getElementById('modal-subtitle').textContent = `Interesse em: ${jobTitle}`;
+  document.getElementById('modal-form-wrap').style.display = 'block';
+  document.getElementById('modal-success').style.display = 'none';
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  ['m-name','m-email','m-phone','m-msg'].forEach(id => document.getElementById(id).value = '');
+}
+
+function submitApplication() {
+  const name = document.getElementById('m-name').value.trim();
+  const email = document.getElementById('m-email').value.trim();
+  if (!name || !email) { alert('Por favor preencha nome e e-mail.'); return; }
+  document.getElementById('modal-form-wrap').style.display = 'none';
+  document.getElementById('modal-success').style.display = 'block';
+}
+
+function subscribeNewsletter() {
+  const inp = document.getElementById('newsletter-input');
+  if (!inp.value.includes('@')) { alert('Informe um e-mail válido.'); return; }
+  inp.value = '';
+  alert('✅ Cadastrado! Você receberá as melhores vagas toda semana.');
+}
+
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-nav').classList.toggle('open');
+});
+
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal')) closeModal();
+});
+
+renderVagas(vagasData);
+</script>
+</body>
+</html>
